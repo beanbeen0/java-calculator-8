@@ -10,6 +10,17 @@ public class Application {
 
         String input = sc.nextLine();
 
-        System.out.println("결과 : " + input);
+        int result = 0;
+
+        String[] tokens = input.split(",|:");
+
+        for(String token : tokens) {
+            if (token.equals("")) {
+                continue;
+            }
+            result += Integer.parseInt(token);
+        }
+
+        System.out.println("결과 : " + result);
     }
 }
