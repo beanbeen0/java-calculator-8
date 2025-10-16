@@ -23,7 +23,9 @@ public class Application {
         String[] tokens = data.split(delimiter);
         for(String token : tokens) {
             if (token.equals("")) continue;
-            result += Integer.parseInt(token);
+            int operand = Integer.parseInt(token);
+            if (operand < 0) throw new IllegalArgumentException();
+            result += operand;
         }
 
         System.out.println("결과 : " + result);
