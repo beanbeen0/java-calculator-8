@@ -35,7 +35,7 @@ public class Application {
             if (token.equals("")) continue;
             int operand = Integer.parseInt(token);
             numbers.add(Integer.parseInt(token));
-            if (operand < 0) throw new IllegalArgumentException();
+            if (operand <= 0) throw new IllegalArgumentException();
         }
 
         //덧셈
