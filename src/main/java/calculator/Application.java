@@ -33,9 +33,12 @@ public class Application {
         List<Integer> numbers = new ArrayList<>();
         for(String token : tokens) {
             if (token.equals("")) continue;
-            int operand = Integer.parseInt(token);
             numbers.add(Integer.parseInt(token));
-            if (operand <= 0) throw new IllegalArgumentException();
+        }
+
+        //양수 검증
+        for (int num : numbers) {
+            if (num <= 0) throw new IllegalArgumentException();
         }
 
         //덧셈
