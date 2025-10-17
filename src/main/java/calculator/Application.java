@@ -1,5 +1,8 @@
 package calculator;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,13 +29,19 @@ public class Application {
         // 구분자 기준으로 토큰 분리
         String[] tokens = data.split(delimiter);
 
-        //정수화 + 덧셈
-        int result = 0;
+        //정수화
+        List<Integer> numbers = new ArrayList<>();
         for(String token : tokens) {
             if (token.equals("")) continue;
             int operand = Integer.parseInt(token);
+            numbers.add(Integer.parseInt(token));
             if (operand < 0) throw new IllegalArgumentException();
-            result += operand;
+        }
+
+        //덧셈
+        int result = 0;
+        for(int num : numbers) {
+            result += num;
         }
 
         //결과 출력
