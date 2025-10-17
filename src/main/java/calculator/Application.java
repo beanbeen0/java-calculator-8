@@ -29,7 +29,7 @@ public class Application {
         // 구분자 기준으로 토큰 분리
         String[] tokens = data.split(delimiter);
 
-        //정수화
+        // 정수화
         List<Integer> numbers = new ArrayList<>();
         for(String token : tokens) {
             if (token.equals("")) continue;
@@ -40,18 +40,18 @@ public class Application {
             }
         }
 
-        //양수 검증
+        // 양수 검증
         for (int num : numbers) {
             if (num <= 0) throw new IllegalArgumentException("0과 음수는 허용되지 않습니다.");
         }
 
-        //덧셈
+        // 덧셈
         int result = 0;
         for(int num : numbers) {
             result += num;
         }
 
-        //결과 출력
+        // 결과 출력
         System.out.println("결과 : " + result);
     }
 }
