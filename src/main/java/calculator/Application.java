@@ -42,7 +42,7 @@ public class Application {
 
         //양수 검증
         for (int num : numbers) {
-            if (num <= 0) throw new IllegalArgumentException();
+            if (num <= 0) throw new IllegalArgumentException("0과 음수는 허용되지 않습니다.");
         }
 
         //덧셈
