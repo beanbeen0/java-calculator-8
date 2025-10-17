@@ -18,15 +18,16 @@ public class Application {
         // 커스텀 지정자 지정 기능
         Pattern customDelimeterPattern = Pattern.compile("^//(?<customDelimiter>.)\\\\n(?<data>.*)");
         Matcher matcher = customDelimeterPattern.matcher(input);
-
         if (matcher.matches()) {
             delimiter = Pattern.quote(matcher.group("customDelimiter"));
             data = matcher.group("data");
         }
 
-        // 구분자 기준으로 토큰 분리 후 정수화 -> 덧셈
-        int result = 0;
+        // 구분자 기준으로 토큰 분리
         String[] tokens = data.split(delimiter);
+
+        //정수화 + 덧셈
+        int result = 0;
         for(String token : tokens) {
             if (token.equals("")) continue;
             int operand = Integer.parseInt(token);
