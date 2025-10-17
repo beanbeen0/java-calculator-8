@@ -33,7 +33,11 @@ public class Application {
         List<Integer> numbers = new ArrayList<>();
         for(String token : tokens) {
             if (token.equals("")) continue;
-            numbers.add(Integer.parseInt(token));
+            try {
+                numbers.add(Integer.parseInt(token));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("혀용된 구분자와 양수 외에 잘못된 문자가 섞여 있습니다.", e);
+            }
         }
 
         //양수 검증
