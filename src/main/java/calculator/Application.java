@@ -10,15 +10,20 @@ public class Application {
 
     public static void main(String[] args) {
 
-        // 입력 받기
         System.out.println("덧셈할 문자열을 입력해주세요.");
         String input = Console.readLine();
 
-        // 변수 초기화
+        List<Integer> numbers = parseToNumbers(input);
+        validateAllPositive(numbers);
+        int result = calculateSum(numbers);
+
+        System.out.println("결과 : " + result);
+    }
+
+    private static List<Integer> parseToNumbers(String input) {
         String data = input;
         String delimiter = ",|:";
 
-        // 커스텀 지정자 지정 기능
         Pattern customDelimeterPattern = Pattern.compile("^//(?<customDelimiter>.)\\\\n(?<data>.*)");
         Matcher matcher = customDelimeterPattern.matcher(input);
         if (matcher.matches()) {
@@ -26,10 +31,11 @@ public class Application {
             data = matcher.group("data");
         }
 
-        // 구분자 기준으로 토큰 분리
-        String[] tokens = data.split(delimiter);
+        String[] tokensSplitByDelimiter = data.split(delimiter);
+        return convertToNumbers(tokensSplitByDelimiter);
+    }
 
-        // 정수화
+    private static List<Integer> convertToNumbers(String[] tokens) {
         List<Integer> numbers = new ArrayList<>();
         for(String token : tokens) {
             if (token.equals("")) continue;
@@ -39,19 +45,18 @@ public class Application {
                 throw new IllegalArgumentException("혀용된 구분자와 양수 외에 잘못된 문자가 섞여 있습니다.", e);
             }
         }
+        return numbers;
+    }
 
-        // 양수 검증
+    private static void validateAllPositive(List<Integer> numbers) {
         for (int num : numbers) {
             if (num <= 0) throw new IllegalArgumentException("0과 음수는 허용되지 않습니다.");
         }
+    }
 
-        // 덧셈
-        int result = 0;
-        for(int num : numbers) {
-            result += num;
-        }
-
-        // 결과 출력
-        System.out.println("결과 : " + result);
+    private static int calculateSum(List<Integer> numbers) {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }
